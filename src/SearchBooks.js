@@ -8,15 +8,21 @@ class SearchBooks extends Component {
     query: '',
     books: []
   };
+
+  // The component grab the props for class and add it to the setBookShelves
   componentWillReceiveProps(nextProps) {
     if (this.state.books.length > 0 && nextProps.books.length > 0) {
       this.setBookShelves(this.state.books, nextProps.books);
     }
   }
+
+  // uddateQuery: Update the query and set the state
   updateQuery = query => {
     this.setState({ query });
     this.searchBooks(query);
   };
+
+  // searchBook: parameters = query , use the bookAPI and update the state
   searchBooks = query => {
     if (query === '') {
       this.setState({ books: [] });
@@ -28,6 +34,8 @@ class SearchBooks extends Component {
       });
     }
   };
+
+  // setBookShelves:parameters searchBooks
   setBookShelves = (searchBooks, myBooks) => {
     const correctlyShelvedBooks = searchBooks.map(searchBook => {
       const myBook = myBooks.filter(
@@ -44,6 +52,8 @@ class SearchBooks extends Component {
       this.setState({ books: correctlyShelvedBooks });
     }
   };
+
+
   render() {
     return (
       <div className="search-books">
@@ -67,7 +77,6 @@ class SearchBooks extends Component {
                 key={book.id}
                 book={book}
                 onShelfChange={this.props.updateBook}
-                displayRating={false}
               />
             )}
           </ol>

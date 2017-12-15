@@ -5,6 +5,7 @@ class Book extends Component {
   handleChange = event => {
     this.props.onShelfChange(this.props.book, event.target.value);
   };
+
   render() {
     return (
       <li>
@@ -40,12 +41,7 @@ class Book extends Component {
           <div className="book-authors">
             {this.props.book.authors && this.props.book.authors.join(', ')}
           </div>
-          {/* {this.props.displayRating &&
-            <BookRating
-              book={this.props.book}
-              updateRating={this.props.updateRating}
-            />
-           } */}
+
         </div>
       </li>
     );

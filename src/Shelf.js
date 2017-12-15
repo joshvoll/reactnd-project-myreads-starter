@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Book from './Book';
 
+// Shelf: create the shelf of the application, base on book id, book data
 class Shelf extends Component {
   render() {
     return (

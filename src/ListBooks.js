@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Shelf from './Shelf';
 
+// ListBooks: crete the list of the book base on currently reading, want to read and read
 class ListBooks extends Component {
   state = {
     shelves: [
@@ -10,9 +11,13 @@ class ListBooks extends Component {
       { id: 'read', title: 'Read' }
     ]
   };
+
+  // parameters: shelf return: filter of the book id
   getBooksForShelf = shelf => {
     return this.props.books.filter(book => shelf.id === book.shelf);
   };
+
+
   render() {
     return (
       <div className="list-books">

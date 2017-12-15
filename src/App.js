@@ -9,12 +9,16 @@ class BooksApp extends React.Component {
   state = {
     books: []
   };
+
+  // methods call the getAll() method from books api
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
       this.setBookRatings();
     });
   }
+
+
   setBookRatings = () => {
     this.setState(({ books }) => {
       return {
@@ -26,12 +30,16 @@ class BooksApp extends React.Component {
       };
     });
   };
+
+  // filtering the book to call the book id and returning the match
   isNewBook = book => {
     const matchedBooks = this.state.books.filter(
       myBook => myBook.id === book.id
     );
     return matchedBooks.length === 0;
   };
+
+  // parameters: book, shelf, return new state adding the new book 
   addBook = (book, shelf) => {
     this.setState(prevState => {
       book.shelf = shelf;
@@ -41,6 +49,8 @@ class BooksApp extends React.Component {
       };
     });
   };
+
+
   updateBook = (book, shelf) => {
     this.setState(prevState => {
       if (shelf === 'none') {
@@ -60,6 +70,8 @@ class BooksApp extends React.Component {
       };
     });
   };
+
+  // parameters: book, shelf, update the bookAPi 
   handleShelfChange = (book, shelf) => {
     if (this.isNewBook(book)) {
       this.addBook(book, shelf);
@@ -69,6 +81,8 @@ class BooksApp extends React.Component {
 
     BooksAPI.update(book, shelf);
   };
+
+  // parameters: book and rating, updating the ratings
   updateBookRating = (book, rating) => {
     this.setState(({ books }) => {
       return {
@@ -81,8 +95,8 @@ class BooksApp extends React.Component {
       };
     });
 
-    localStorage.setItem(`${book.id}`, `${rating}`);
   };
+  
   render() {
     return (
       <div className="app">
